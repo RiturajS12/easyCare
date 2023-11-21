@@ -1,8 +1,15 @@
 from flask import Flask,render_template,request
-app = Flask(__name__)
+from dotenv import load_dotenv
+import os
 import openai
+
+app = Flask(__name__)
+
+
+load_dotenv()
+
 openai.organization= "org-Z2IRBwP0NiTk6MvZbhj8J5uu"
-openai.api_key = "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"
+openai.api_key = os.environ.get("OPENAI_API_KEY")
 @app.route('/')
 def intro():
     return render_template('index.html')
